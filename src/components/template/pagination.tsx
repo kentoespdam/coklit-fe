@@ -1,6 +1,6 @@
 "use client";
 import type { PageResponse } from "@/lib/fetch";
-import { Button, buttonVariants } from "@ui/button";
+import { Button } from "@ui/button";
 import { Pagination, PaginationContent, PaginationItem } from "@ui/pagination";
 import {
 	Select,
@@ -9,14 +9,12 @@ import {
 	SelectTrigger,
 	SelectValue,
 } from "@ui/select";
-import { Separator } from "@ui/separator";
 import {
 	ChevronFirstIcon,
 	ChevronLastIcon,
 	ChevronLeftIcon,
 	ChevronRightIcon,
 } from "lucide-react";
-import Link from "next/link";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
 interface PageableComponentProps {
@@ -29,10 +27,6 @@ const PageableComponent = ({ page }: PageableComponentProps) => {
 
 	const numberOfElement = page.content.length;
 	const totalElement = page.total;
-	const first = page.offset === 0;
-	const last = page.offset + page.content.length === page.total;
-	const totalPages = page.total / page.limit;
-	const number = page.offset / page.limit + 1;
 
 	const handleSearch = (key: string, value: unknown) => {
 		const params = new URLSearchParams(searchParams);
@@ -43,7 +37,20 @@ const PageableComponent = ({ page }: PageableComponentProps) => {
 	};
 
 	const navigateToPage = (pageNumber: number) => {
-		handleSearch("pos", pageNumber);
+		handleSearch("page", pageNumber);
+	};
+
+	const handleLimitChange = (value: string) => {
+		const params = new URLSearchParams(searchParams);
+		if (params.has("page")) {
+			params.set("page", "1");
+		}
+
+		if (params.has("limit"))
+			params.set("limit", value);
+		else
+			params.append("limit", value);
+		router.push(`${pathname}?${params.toString()}`);
 	};
 
 	return (
@@ -51,9 +58,9 @@ const PageableComponent = ({ page }: PageableComponentProps) => {
 			<div className="flex flex-row justify-end items-center px-2 gap-2">
 				<div className="flex flex-row text-sm items-center gap-2">
 					<div className="text-nowrap">Row Per Page</div>
-					<Select>
-						<SelectTrigger className="border-0">
-							<SelectValue placeholder="10" />
+					<Select onValueChange={(value) => handleLimitChange(value)}>
+						<SelectTrigger className="border-0" >
+							<SelectValue placeholder={page.limit ?? 10} />
 						</SelectTrigger>
 						<SelectContent>
 							<SelectItem value="10">10</SelectItem>
@@ -66,7 +73,7 @@ const PageableComponent = ({ page }: PageableComponentProps) => {
 				<div className="text-sm">
 					{numberOfElement > 0 && (
 						<>
-							{page.offset + 1} - {last} of {totalElement}
+							Page {page.page} - {page.totalPages} of {totalElement}
 						</>
 					)}
 				</div>
@@ -77,8 +84,8 @@ const PageableComponent = ({ page }: PageableComponentProps) => {
 								<Button
 									variant="ghost"
 									size="icon"
-									onClick={() => navigateToPage(0)}
-									disabled={first}
+									onClick={() => navigateToPage(1)}
+									disabled={page.isFirst}
 								>
 									<ChevronFirstIcon className="h-5 w-5" />
 								</Button>
@@ -87,8 +94,8 @@ const PageableComponent = ({ page }: PageableComponentProps) => {
 								<Button
 									variant="ghost"
 									size="icon"
-									onClick={() => navigateToPage(number - 1)}
-									disabled={first}
+									onClick={() => navigateToPage(page.page - 1)}
+									disabled={page.isFirst}
 								>
 									<ChevronLeftIcon className="h-5 w-5" />
 								</Button>
@@ -97,8 +104,8 @@ const PageableComponent = ({ page }: PageableComponentProps) => {
 								<Button
 									variant="ghost"
 									size="icon"
-									onClick={() => navigateToPage(number + 1)}
-									disabled={last}
+									onClick={() => navigateToPage(page.page + 1)}
+									disabled={page.isLast}
 								>
 									<ChevronRightIcon className="h-5 w-5" />
 								</Button>
@@ -107,8 +114,8 @@ const PageableComponent = ({ page }: PageableComponentProps) => {
 								<Button
 									variant="ghost"
 									size="icon"
-									onClick={() => navigateToPage(totalPages - 1)}
-									disabled={last}
+									onClick={() => navigateToPage(page.totalPages - 1)}
+									disabled={page.isLast}
 								>
 									<ChevronLastIcon className="h-5 w-5" />
 								</Button>
@@ -117,7 +124,7 @@ const PageableComponent = ({ page }: PageableComponentProps) => {
 					</Pagination>
 				</div>
 			</div>
-		</div>
+		</div >
 	);
 };
 

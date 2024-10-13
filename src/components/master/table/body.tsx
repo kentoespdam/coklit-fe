@@ -12,8 +12,8 @@ const MasterTniTableBody = ({ page }: MasterTniTableProps) => {
 					<TableCell>{row.nosamw}</TableCell>
 					<TableCell>{row.nama}</TableCell>
 					<TableCell>{row.kotama}</TableCell>
-					<TableCell>{row.saker}</TableCell>
-					<TableCell>{row.is_aktif}</TableCell>
+					<TableCell>{row.satker}</TableCell>
+					<TableCell>{row.is_aktif?"Aktif":"Tidak Aktif"}</TableCell>
 				</TableRow>
 			))}
 		</TableBody>

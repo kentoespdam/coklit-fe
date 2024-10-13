@@ -18,7 +18,7 @@ const BreadcrumbItemGenerator = ({
 	return (
 		<>
 			<BreadcrumbItem key={`${item}`}>
-				<Link href={index === 1 ? "#" : "/pathname"}>{item}</Link>
+				<Link href={index === arrPath.length - 1 ? "#" : `/${arrPath[index]}`}>{item}</Link>
 			</BreadcrumbItem>
 			{index < arrPath.length - 1 && <BreadcrumbSeparator />}
 		</>
@@ -27,8 +27,8 @@ const BreadcrumbItemGenerator = ({
 
 const BreadCrumbComponent = () => {
 	const pathname = usePathname() ?? "";
-	const arrPath = pathname.split("/").filter(Boolean);
-	console.log(arrPath);
+	const arrPath = pathname.split("?")[0].split("/").filter(Boolean);
+
 	return (
 		<>
 			<Breadcrumb className="hidden md:flex">

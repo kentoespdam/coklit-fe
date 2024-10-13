@@ -1,7 +1,7 @@
 export interface MasterTni{
     nosamw: string
     nama: string
-    saker: string
+    satker: string
     kotama: string
     is_aktif: boolean
 }
