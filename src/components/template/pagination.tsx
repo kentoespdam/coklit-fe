@@ -30,9 +30,8 @@ const PageableComponent = ({ page }: PageableComponentProps) => {
 
 	const handleSearch = (key: string, value: unknown) => {
 		const params = new URLSearchParams(searchParams);
-		params.has(key)
-			? params.set(key, String(value))
-			: params.append(key, String(value));
+		if (params.has(key)) params.set(key, String(value));
+		else params.append(key, String(value));
 		router.push(`${pathname}?${params.toString()}`);
 	};
 
@@ -46,10 +45,8 @@ const PageableComponent = ({ page }: PageableComponentProps) => {
 			params.set("page", "1");
 		}
 
-		if (params.has("limit"))
-			params.set("limit", value);
-		else
-			params.append("limit", value);
+		if (params.has("limit")) params.set("limit", value);
+		else params.append("limit", value);
 		router.push(`${pathname}?${params.toString()}`);
 	};
 
@@ -59,7 +56,7 @@ const PageableComponent = ({ page }: PageableComponentProps) => {
 				<div className="flex flex-row text-sm items-center gap-2">
 					<div className="text-nowrap">Row Per Page</div>
 					<Select onValueChange={(value) => handleLimitChange(value)}>
-						<SelectTrigger className="border-0" >
+						<SelectTrigger className="border-0">
 							<SelectValue placeholder={page.limit ?? 10} />
 						</SelectTrigger>
 						<SelectContent>
@@ -124,7 +121,7 @@ const PageableComponent = ({ page }: PageableComponentProps) => {
 					</Pagination>
 				</div>
 			</div>
-		</div >
+		</div>
 	);
 };
 

@@ -1,8 +1,5 @@
 "use server";
 
-import { auth } from "./auth";
-import { prisma } from "./lib/prisma";
-
 export const logout = async (token: string) => {
 	const params = new URLSearchParams();
 	params.append("id_token_hint", token);

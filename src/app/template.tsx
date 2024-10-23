@@ -1,28 +1,7 @@
-import { auth, signOut } from "@/auth";
 import LoginLogoutButton from "@/components/auth/login-logout";
-import LogoutComponent from "@/components/auth/logout";
-import AuthSessionProvider from "@/components/auth/session-provider";
-import Unauthorized from "@/components/auth/unauthorize";
 import BreadCrumbComponent from "@/components/template/breadcrumb";
 import NavigationComponent from "@/components/template/navigation";
-import {
-	Breadcrumb,
-	BreadcrumbItem,
-	BreadcrumbLink,
-	BreadcrumbList,
-	BreadcrumbPage,
-	BreadcrumbSeparator,
-} from "@ui/breadcrumb";
-import { Button } from "@ui/button";
-import {
-	DropdownMenu,
-	DropdownMenuContent,
-	DropdownMenuItem,
-	DropdownMenuTrigger,
-} from "@ui/dropdown-menu";
 import { TooltipProvider } from "@ui/tooltip";
-import { User } from "lucide-react";
-import Link from "next/link";
 import type React from "react";
 
 const Template = ({ children }: { children: React.ReactNode }) => {

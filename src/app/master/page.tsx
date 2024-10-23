@@ -39,16 +39,14 @@ const MasterPage = async ({
 		searchParams: urlSearch.toString(),
 	});
 	const satker = await getList<Satker>({
-		path: "satker"
-	})
+		path: "satker",
+	});
 
 	return (
 		<Card x-chunk="dashboard-06-chunk-0">
 			<CardHeader>
-				<CardTitle>Master Data Tni</CardTitle>
-				<CardDescription>
-					Manage your products and view their sales performance.
-				</CardDescription>
+				<CardTitle>{metadata.title}</CardTitle>
+				<CardDescription>{metadata.description}</CardDescription>
 			</CardHeader>
 			<CardContent>
 				<div className="grid gap-2">

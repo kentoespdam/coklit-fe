@@ -1,8 +1,6 @@
-import { PrismaAdapter } from "@auth/prisma-adapter";
-import NextAuth, { Session, type User } from "next-auth";
+import NextAuth from "next-auth";
 import type { JWT } from "next-auth/jwt";
 import Keycloak from "next-auth/providers/keycloak";
-import { prisma } from "./lib/prisma";
 import { checkLiveSession, logout, refreshToken } from "./auth.action";
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
@@ -50,6 +48,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
 		},
 	},
 	session: { strategy: "jwt" },
+	trustHost: true,
 
 	// debug: process.env.NODE_ENV === "development",
 });

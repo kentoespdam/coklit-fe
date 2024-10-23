@@ -9,7 +9,7 @@ const LoginComponent = () => {
 				await signIn("keycloak");
 			}}
 		>
-			<Button type="submit">Login</Button>
+			<Button type="submit" variant="default">Login</Button>
 		</form>
 	);
 };

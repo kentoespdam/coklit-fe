@@ -1,5 +1,3 @@
-import SignIn from "./sign-in";
-
 const Unauthorized = () => {
 	return (
 		<div className="flex flex-col h-screen w-full items-center justify-center gap-4">

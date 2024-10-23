@@ -17,4 +17,20 @@ const sqids = new Sqids({
 	minLength: 16,
 });
 
-export const decodeId = (id: string) => (id ? sqids.decode(id).slice(-5)[0] : null);
+export const decodeId = (id: string) =>
+	id ? sqids.decode(id).slice(-5)[0] : null;
+
+export const enumToArray = <T extends string>(enumObj: Record<T, string>) =>
+	Object.entries(enumObj).map(([key, value]) => ({ key, value }));
+
+export const encodeNosamw = (nosamw: string) => {
+	const arrNosamw = nosamw
+		.split("")
+		.map((char) => char.charCodeAt(0) as number);
+	return sqids.encode(arrNosamw);
+};
+
+export const decodeNosamw = (nosamw: string) => {
+	const arrNosamw = sqids.decode(nosamw);
+	return arrNosamw.map((num) => String.fromCharCode(num) as string).join("");
+};

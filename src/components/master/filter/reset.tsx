@@ -9,6 +9,7 @@ const ResetFilter = () => {
     };
     return (
         <Button
+            type="reset"
             variant="destructive"
             onClick={doReset}
         >

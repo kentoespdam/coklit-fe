@@ -1,6 +1,5 @@
 import { auth, signOut } from "@/auth";
 import { Button } from "@ui/button";
-import type { Session } from "next-auth";
 
 const LogoutComponent = async () => {
 	const session = await auth();
@@ -13,7 +12,7 @@ const LogoutComponent = async () => {
 			}}
 			className="w-full"
 		>
-			<Button type="submit">
+			<Button type="submit" variant="destructive">
 				Logout
 			</Button>
 		</form>

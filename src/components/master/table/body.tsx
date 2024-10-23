@@ -1,6 +1,7 @@
 import { TableBody, TableCell, TableRow } from "@ui/table";
 import type { MasterTniTableProps } from ".";
 import { getUrut } from "@/lib/utils";
+import MasterTableAction from "./table-action";
 
 const MasterTniTableBody = ({ page }: MasterTniTableProps) => {
 	let urut = getUrut(page);
@@ -13,7 +14,10 @@ const MasterTniTableBody = ({ page }: MasterTniTableProps) => {
 					<TableCell>{row.nama}</TableCell>
 					<TableCell>{row.kotama}</TableCell>
 					<TableCell>{row.satker}</TableCell>
-					<TableCell>{row.is_aktif?"Aktif":"Tidak Aktif"}</TableCell>
+					<TableCell>{row.is_aktif ? "Aktif" : "Tidak Aktif"}</TableCell>
+					<TableCell>
+						<MasterTableAction row={row} />
+					</TableCell>
 				</TableRow>
 			))}
 		</TableBody>
