@@ -1,4 +1,5 @@
 export interface BaseSearchBuilderProps {
-    id: string,
-    label: string
+	id: string;
+	label: string;
+	defaultValues?: string;
 }

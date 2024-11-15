@@ -29,6 +29,7 @@ const InputZod = <TData extends FieldValues>({
 					<FormLabel>{props.label}</FormLabel>
 					<FormControl>
 						<Input
+							type={props.type ?? "text"}
 							placeholder={`Massukan ${props.label}`}
 							{...field}
 							{...props}

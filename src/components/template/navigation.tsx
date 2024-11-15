@@ -1,3 +1,4 @@
+import { getCurrentPeriode } from "@/lib/utils";
 import {
 	NavigationMenu,
 	NavigationMenuItem,
@@ -10,7 +11,7 @@ import Link from "next/link";
 const menuList = [
 	{ label: "Dashboard", url: "/" },
 	{ label: "Master", url: "/master" },
-	{ label: "Rekening", url: "/rekening" },
+	{ label: "Rekening", url: `/rekening/${getCurrentPeriode()}` },
 ];
 
 const NavigationComponent = () => {

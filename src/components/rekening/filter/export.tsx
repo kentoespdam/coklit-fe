@@ -1,24 +1,27 @@
 "use client";
-
 import { downloadFile } from "@/lib/fetch";
 import { base64toBlob } from "@/lib/utils";
 import { Button } from "@ui/button";
 import { File } from "lucide-react";
 import { useSearchParams } from "next/navigation";
-
-const ExportMasterButton = () => {
+import { toast } from "sonner";
+const ExportRekeningTniButton = ({ periode }: { periode: string }) => {
 	const searchParams = useSearchParams();
 	const search = new URLSearchParams(searchParams);
 
 	const download = async () => {
+		if (!searchParams.get("satker_id")) {
+			toast.error("Pilih Satker Terlebih Dahulu");
+			return;
+		}
+
 		const req = await downloadFile({
-			path: "master_tni/export/excel",
-			searchParams: search.toString(),
+			path: `tni/${periode}/${searchParams.get("satker_id")}/csv`,
 		});
 
 		const blob = base64toBlob(req.base64, req.type);
 
-		const fileName = "master_tni.xlsx";
+		const fileName = `coklit_tni_${periode}_${new Date().toISOString()}.csv`;
 		const url = URL.createObjectURL(blob);
 		const link = document.createElement("a");
 		link.href = url;
@@ -43,4 +46,4 @@ const ExportMasterButton = () => {
 	);
 };
 
-export default ExportMasterButton;
+export default ExportRekeningTniButton;

@@ -26,12 +26,22 @@ interface getPageProps {
 	id?: string | number;
 }
 
+export const genericGetData = async <Entity>(
+	path: string,
+): Promise<ApiResponse<Entity>> => {
+	const url = `${process.env.NEXT_PUBLIC_API_URL}/${path}`;
+	console.log(url);
+	const request = await fetch(url, {
+		cache: "no-cache",
+	});
+	return await request.json();
+};
+
 export const getPage = async <Entity>({
 	path,
 	searchParams,
 }: getPageProps): Promise<ApiResponse<PageResponse<Entity>>> => {
 	const url = `${process.env.NEXT_PUBLIC_API_URL}/${path}?${searchParams}`;
-	// console.log(url);
 	const request = await fetch(url);
 	return await request.json();
 };
@@ -60,7 +70,7 @@ export const getDetail = async <Entity>({
 export const downloadFile = async ({
 	path,
 	searchParams,
-}: getPageProps): Promise<Blob> => {
+}: getPageProps): Promise<{ type: string; base64: string }> => {
 	const response = await fetch(
 		`${process.env.NEXT_PUBLIC_API_URL}/${path}?${searchParams}`,
 		{
@@ -68,7 +78,13 @@ export const downloadFile = async ({
 		},
 	);
 
-	return response.blob();
+	const blob = await response.blob();
+	const arrayBuffer = await blob.arrayBuffer();
+
+	return {
+		type: blob.type,
+		base64: Buffer.from(arrayBuffer).toString("base64"),
+	};
 };
 
 export const postData = async <Entity>({

@@ -6,7 +6,11 @@ import React, { useEffect } from "react";
 import { useDebouncedCallback } from "use-debounce";
 import type { BaseSearchBuilderProps } from "./props";
 
-const InputSearchBuilder = ({ id, label }: BaseSearchBuilderProps) => {
+const InputSearchBuilder = ({
+	id,
+	label,
+	defaultValues = "",
+}: BaseSearchBuilderProps) => {
 	const searchParams = useSearchParams();
 	const pathname = usePathname();
 	const [value, setValue] = React.useState(
@@ -22,20 +26,22 @@ const InputSearchBuilder = ({ id, label }: BaseSearchBuilderProps) => {
 	}, 500);
 
 	useEffect(() => {
-		setValue(searchParams.get(id)?.toString() ?? "");
-	}, [searchParams, id]);
+		setValue(searchParams.get(id)?.toString() ?? defaultValues);
+	}, [searchParams, id, defaultValues]);
 
 	return (
-		<Input
-			type="text"
-			placeholder={`Cari ${label}`}
-			name={id}
-			onChange={(e) => {
-				setValue(e.target.value);
-				doChange();
-			}}
-			value={value}
-		/>
+		<div>
+			<Input
+				type="text"
+				placeholder={`Cari ${label}`}
+				name={id}
+				onChange={(e) => {
+					setValue(e.target.value);
+					doChange();
+				}}
+				value={value}
+			/>
+		</div>
 	);
 };
 
