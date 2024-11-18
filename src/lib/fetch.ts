@@ -30,7 +30,6 @@ export const genericGetData = async <Entity>(
 	path: string,
 ): Promise<ApiResponse<Entity>> => {
 	const url = `${process.env.NEXT_PUBLIC_API_URL}/${path}`;
-	console.log(url);
 	const request = await fetch(url, {
 		cache: "no-cache",
 	});

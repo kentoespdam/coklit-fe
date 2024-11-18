@@ -1,11 +1,8 @@
-import { genericGetData } from "@/lib/fetch";
 import { addDot, getUrut } from "@/lib/utils";
 import { TableBody, TableCell, TableRow } from "@ui/table";
-import { revalidatePath } from "next/cache";
 import type { RekeningTniTableProps } from ".";
 import CellForm from "./cell_form";
 import SyncRekeningButton from "./sync_button";
-import { redirect } from "next/navigation";
 
 const RekeningTniTableBody = ({ page, periode }: RekeningTniTableProps) => {
 	let urut = getUrut(page);

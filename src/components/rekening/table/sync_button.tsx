@@ -29,6 +29,7 @@ const SyncRekeningButton = ({ periode }: { periode: string }) => {
 		<form
 			action={async () => {
 				const req = await genericGetData(`tni/${periode}/tarik_data`);
+				console.log(req.status)
 
 				if (req.status === 201) {
 					toast.info(req.status, { description: req.message });

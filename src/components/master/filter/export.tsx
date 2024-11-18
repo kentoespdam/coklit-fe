@@ -32,7 +32,7 @@ const ExportMasterButton = () => {
 		<Button
 			size="sm"
 			variant="outline"
-			className="h-7 gap-1"
+			className="gap-1 bg-primary text-primary-foreground"
 			onClick={download}
 		>
 			<File className="h-3.5 w-3.5" />

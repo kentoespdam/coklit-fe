@@ -7,7 +7,6 @@ import { useSearchParams } from "next/navigation";
 import { toast } from "sonner";
 const ExportRekeningTniButton = ({ periode }: { periode: string }) => {
 	const searchParams = useSearchParams();
-	const search = new URLSearchParams(searchParams);
 
 	const download = async () => {
 		if (!searchParams.get("satker_id")) {
@@ -33,9 +32,8 @@ const ExportRekeningTniButton = ({ periode }: { periode: string }) => {
 
 	return (
 		<Button
-			size="sm"
 			variant="outline"
-			className="h-7 gap-1"
+			className="gap-1 bg-primary text-primary-foreground"
 			onClick={download}
 		>
 			<File className="h-3.5 w-3.5" />
