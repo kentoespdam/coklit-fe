@@ -1,11 +1,11 @@
 services:
-  kepegawaian:
+  coklit-fe:
     container_name: coklit-fe
     image: coklit-fe:latest
     build: .
     env_file:
-      - .env
-    # entrypoint: 
-    #   - node
-    #   - server.js
+      - .env.production
+    entrypoint: 
+      - node
+      - server.js
     network_mode: host
