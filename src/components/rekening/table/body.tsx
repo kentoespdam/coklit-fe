@@ -24,8 +24,8 @@ const RekeningTniTableBody = ({ page, periode }: RekeningTniTableProps) => {
 	return (
 		<TableBody>
 			{page.content.map((row) => {
-				const { r1, r2, r3, r4, denda, ang_sb, jasa_sb } = row;
-				const air = r1 + r2 + r3 + r4;
+				const { r1, r2, r3, r4, dnmet, denda, ang_sb, jasa_sb } = row;
+				const air = r1 + r2 + r3 + r4 + dnmet;
 				const tagihan = air + denda + ang_sb + jasa_sb;
 				return (
 					<TableRow key={row.id}>
@@ -58,7 +58,7 @@ const RekeningTniTableBody = ({ page, periode }: RekeningTniTableProps) => {
 							{addDot(row.rata2)}
 						</TableCell>
 						<TableCell className="border-x text-nowrap" align="right">
-							{addDot(row.dnmet)}
+							{addDot(0)}
 						</TableCell>
 						<TableCell className="border-x text-nowrap" align="right">
 							{addDot(air)}
