@@ -17,9 +17,7 @@ const BreadcrumbItemGenerator = ({
 }: { arrPath: string[]; item: string; index: number }) => {
 	return (
 		<>
-			<BreadcrumbItem key={`${item}`}>
-				<Link href={index === arrPath.length - 1 ? "#" : `/${arrPath[index]}`}>{item}</Link>
-			</BreadcrumbItem>
+			<BreadcrumbItem key={`${item}`}>{item}</BreadcrumbItem>
 			{index < arrPath.length - 1 && <BreadcrumbSeparator />}
 		</>
 	);
@@ -35,7 +33,7 @@ const BreadCrumbComponent = () => {
 				<BreadcrumbList>
 					<BreadcrumbItem>
 						<BreadcrumbLink asChild>
-							<Link href="/dashboard">Dashboard</Link>
+							<Link href="/">Dashboard</Link>
 						</BreadcrumbLink>
 					</BreadcrumbItem>
 					{arrPath.length > 0 && <BreadcrumbSeparator />}
