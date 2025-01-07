@@ -39,12 +39,12 @@ const MasterFormComponent = ({
 
 	const handleFormSubmit = async (formData: masterTniSchema) => {
 		const response = await (action === "add"
-			? postData<MasterTni>({
+			? postData<masterTniSchema>({
 					path: "master_tni",
 					data: formData,
 					revalidPath: "/master",
 				})
-			: putData<MasterTni>({
+			: putData<masterTniSchema>({
 					path: "master_tni",
 					id: formData.nosamw,
 					data: formData,
