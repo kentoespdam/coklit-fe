@@ -6,6 +6,7 @@ export interface MasterTni {
 	satker: string;
 	kotama: string;
 	is_aktif: boolean;
+	urjlw: string;
 }
 
 export const masterTniSchema = z.object({

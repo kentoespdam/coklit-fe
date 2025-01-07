@@ -15,6 +15,7 @@ const MasterTniTableBody = ({ page }: MasterTniTableProps) => {
 					<TableCell>{row.kotama}</TableCell>
 					<TableCell>{row.satker}</TableCell>
 					<TableCell>{row.is_aktif ? "Aktif" : "Tidak Aktif"}</TableCell>
+					<TableCell>{row.urjlw}</TableCell>
 					<TableCell>
 						<MasterTableAction row={row} />
 					</TableCell>

@@ -18,6 +18,7 @@ const MasterTniTable = ({ page }: MasterTniTableProps) => {
 						<TableHead>Kotama</TableHead>
 						<TableHead>Satker</TableHead>
 						<TableHead>Aktif</TableHead>
+						<TableHead>Golongan</TableHead>
 						<TableHead>Action</TableHead>
 					</TableRow>
 				</TableHeader>
