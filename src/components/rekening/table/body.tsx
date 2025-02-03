@@ -48,6 +48,7 @@ const RekeningTniTableBody = ({ page, periode }: RekeningTniTableProps) => {
 						<TableCell className="border-x text-nowrap" align="right">
 							{addDot(row.pakai_ori)}
 						</TableCell>
+						<CellForm row={row} field="pakai" />
 						<TableCell className="border-x text-nowrap" align="right">
 							{addDot(row.pakai)}
 						</TableCell>

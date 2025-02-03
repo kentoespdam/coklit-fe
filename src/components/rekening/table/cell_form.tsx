@@ -23,14 +23,14 @@ interface FormComponentProps extends MetLFormProps {
 
 const FormComponent = ({ row, field, setIsForm }: FormComponentProps) => {
 	const fieldId = field as Path<RekeningTniSchema>;
+	const defaultValues = {
+		nosamw: row.nosamw,
+		met_l: row.met_l,
+		met_k: row.met_k,
+	};
+	if (field === "pakai") Object.assign(defaultValues, { pakai: row.pakai });
 	const form = useForm<RekeningTniSchema>({
-		defaultValues: {
-			nosamw: row.nosamw,
-			met_l: row.met_l,
-			met_k: row.met_k_ori,
-			pakai: row.pakai_ori,
-			rata2: row.pakai_ori,
-		},
+		defaultValues: defaultValues,
 	});
 
 	const handleSubmit = async (value: RekeningTniSchema) => {

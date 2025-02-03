@@ -43,10 +43,9 @@ export type rekeningSearchSchema = z.infer<typeof rekeningSearchSchema>;
 
 export const RekeningTniSchema= z.object({
 	nosamw: z.string(),
-	met_l: z.number(),
-	met_k: z.number(),
-	pakai: z.number(),
-	rata2: z.number(),
+	met_l: z.number().optional(),
+	met_k: z.number().optional(),
+	pakai: z.number().optional(),
 });
 
 export type RekeningTniSchema = z.infer<typeof RekeningTniSchema>;
